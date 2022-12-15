@@ -3,7 +3,7 @@
 # 6782 -> 23
 # 0,56 -> 11
 
-number = float(input('Введите число'))
+number = float(input('Введите число '))
 number = str(number)
 c = 0
 for i in number:
