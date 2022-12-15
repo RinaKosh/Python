@@ -7,6 +7,5 @@ for i in range (n):
 print (*my_list, sep=', ')
 c = 0
 for i in my_list:
-    if i != '.':
-        c = float(i)+c
+    c = float(i)+c
 print ('Сумма элементов равна', c)
