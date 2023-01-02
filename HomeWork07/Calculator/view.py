@@ -1,3 +1,11 @@
+def input_number_or_expretion():
+    string = str(input('Введите число или выражение '))
+    try:
+        number = int(string)
+        return number
+    except:
+        return string
+    
 def input_number():
     while True:
         try:
@@ -22,3 +30,6 @@ def log_off():
     
 def print_division_by_zero():
     print('На ноль делить нельзя')
+    
+def print_incorrect_expretion_format():
+    print('Неверный формат выражения')
