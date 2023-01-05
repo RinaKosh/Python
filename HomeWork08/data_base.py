@@ -22,4 +22,4 @@ def list_to_str():
     for contact in phone_book:
         new_phone_book.append(';'.join(contact) + '\n')
     new_phone_book[-1] = new_phone_book[-1][:-1]
-    return ''.jpon(new_phone_book)
+    return ''.join(new_phone_book)

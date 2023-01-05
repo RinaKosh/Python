@@ -1,5 +1,3 @@
-
-
 def main_menu():
     print('\nВыберите пункт меню: ')
     print('1. Показать телефонную книгу')
@@ -46,3 +44,33 @@ def input_new_contact():
     comment=input('Введите коментарий к контакту: ')
     
     return [name, phone, comment]
+
+def input_remove_contact():
+    id=int(input('Введите id контакта, который желаете удалить: '))
+    
+    return id
+
+def input_update_contact():
+    id=int(input('Введите id контакта, который желаете обновить: '))
+    print('Чтобы оставить текущее значение поля, нажмите enter')
+    name=input('Введите имя контакта: ')
+    phone=input('Введите телефон: ')
+    comment=input('Введите коментарий к контакту: ')
+    
+    return [id, [name, phone, comment]]
+
+def remove_success():
+    print('Контакт удален!')
+    
+def update_success():
+    print('Контакт обновлен!')
+    
+def input_string_for_search():
+    search=input('Введите строку для поиска: ')
+    return search
+
+def print_search_result(search_result):
+    print('Результаты поиска:')
+    for id, contact in enumerate(search_result, 1):
+            print(id, *contact)
+    

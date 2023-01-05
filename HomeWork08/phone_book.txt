@@ -1,0 +1,3 @@
+Коля;88888;Николай
+Maks;88900;Maks Ilon, not Ilon Mask
+Alex;890000;

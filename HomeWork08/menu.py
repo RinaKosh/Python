@@ -18,16 +18,27 @@ def main_menu(choice:int):
             contact = view.input_new_contact()
             pb.add_contact(contact)
         case 5:
-            pass
+            phone_book = pb.get_phone_book()
+            view.print_phone_book(phone_book)
+            [id, contact] = view.input_update_contact()
+            pb.update_contact(id, contact)
+            view.update_success()
         case 6:
-            pass
+            phone_book = pb.get_phone_book()
+            view.print_phone_book(phone_book)
+            id = view.input_remove_contact()
+            if pb.remove_contact(id):
+                view.remove_success()
         case 7:
-            pass
+            search = view.input_string_for_search()
+            result = pb.search(search)
+            view.print_search_result(result)
         case 0:
             return True
         
-while True:
-    choice = view.main_menu()
-    if main_menu(choice):
-        view.log_off()
-        break
+def start():
+    while True:
+        choice = view.main_menu()
+        if main_menu(choice):
+            view.log_off()
+            break
