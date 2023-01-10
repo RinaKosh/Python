@@ -1,23 +1,40 @@
 from aiogram import types
-from bot_config import dp, bot
+from bot_config import dp
 
-total = 150
+import game
+import messages
+import user
 
 @dp.message_handler(commands=['start'])
-
 async def start_bot(message: types.Message):
-    await bot.send_message(message.from_user.id, text=f'{message.from_user.first_name}'
-                           f', Hello!')
+    await messages.print_start_message(message.from_user.id, message.from_user.username)
+    await messages.print_help(message.from_user.id)
     
-    print(f'{message.from_user.id} - {message.from_user.username}')
+@dp.message_handler(commands=['help'])
+async def print_help(message: types.Message):
+    await messages.print_help(message.from_user.id)
+
+@dp.message_handler(commands=['setup'])
+async def setup(message: types.Message):
+    user.set_user(message.from_user)
+    if game.check_in_game():
+        return
+    await game.start_setup()
     
+@dp.message_handler(commands=['stop_setup'])
+async def stop_setup(message: types.Message):
+    user.set_user(message.from_user)
+    if game.check_in_game() or not game.check_in_setup():
+        return
+    await game.stop_setup()
+
+@dp.message_handler(commands=['start_game'])
+async def start_game(message: types.Message):
+    user.set_user(message.from_user)
+    if game.check_in_game():
+        return
+    await game.start_game()
+
 @dp.message_handler()
-async def anything(message: types.Message):
-    global total
-    text, first_ = message
-    if message.text.isdigit():
-        if 0 < int(message.text) < 29:
-            total -= int(message.text)
-            await bot.send_message(message.from_user.id, f'{message.from_user.first_name}'
-                                   f' взял со стола {message.text} конфет. '
-                                   f'На столе осталось {total}')
+async def play(message: types.Message):
+    await game.play(message)
